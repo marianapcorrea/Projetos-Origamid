@@ -1,3 +1,9 @@
+//Ativação das funções
+initTabNav();
+initAccordion();
+initScrollSuave();
+initAnimacaoScroll();
+
 function initTabNav() {
   // Essa função é uma forma de encapsular o código JS, isolando o escopo, para separar cada funcionalidade.
   const tabMenu = document.querySelectorAll(".js-tabmenu li");
@@ -25,8 +31,6 @@ function initTabNav() {
   }
 }
 
-initTabNav(); //Ativa a função
-
 function initAccordion() {
   //Função para criar lista tipo acordeon para a FAQ
   const accordionList = document.querySelectorAll(".js-accordion dt");
@@ -47,16 +51,52 @@ function initAccordion() {
   }
 }
 
-initAccordion();
+function initScrollSuave() {
+  const linksInternos = document.querySelectorAll(".js-menu a[href^='#']"); //seleciona os hrefs com links internos ( # )
 
-const linksInternos = document.querySelectorAll(".js-menu a[href^='#']");
+  function scrollToSection(event) {
+    event.preventDefault();
+    const href = event.currentTarget.getAttribute("href");
+    const section = document.querySelector(href);
 
-function scrollToSection(event) {
-  event.preventDefault();
-  const href = event.currentTarget.getAttribute("href");
-  const section = document.querySelector(href);
+    section.scrollIntoView({
+      //Essa função roda apenas no Chrome e FireFox.
+      //Define um scroll suave que alinha o bloco ao início.
+      behavior: "smooth",
+      block: "start",
+    });
+
+    /* 
+  //Forma alternativa de scroll suave, que requer verificar distancia até o topo. Não suportado em alguns navegadores.
+  const topo = section.offsetTop; //Pega a distância do topo da página até o elemento clicado
+  window.scrollTo({
+    top: topo,
+    behavior: "smooth",
+  }); */
+  } //Função que, ao ocorrer o evento (clique), ela impede o comportamento padrão (seguir o link). Depois, pega o href do alvo atual (elemento clicado). Em seguida, esse href é selecionado com o querySelector e seu valor levado para a constante section.
+
+  linksInternos.forEach((link) => {
+    link.addEventListener("click", scrollToSection);
+  });
 }
 
-linksInternos.forEach((link) => {
-  link.addEventListener("click", scrollToSection);
-});
+function initAnimacaoScroll() {
+  const sections = document.querySelectorAll(".js-scroll");
+
+  if (sections.length) {
+    const windowMetade = window.innerHeight * 0.6; //Calcula  60% da altura da tela.
+
+    function animaScroll() {
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const isSectionVisible = sectionTop - windowMetade < 0; // diminui os 60% da altura da tela pela própria altura desde o topo, e depois verifica se esse número é menor que zero.
+        if (isSectionVisible)
+          //Se positivo, adiciona a classe 'ativo', que fará a transição animada para a próxima sessao.
+          section.classList.add("ativo");
+        else section.classList.remove("ativo");
+      });
+    }
+    animaScroll(); //Garante uma primeira ativação logo que a página é carregada, para que não seja preciso rolar para ter o primeiro conteúdo.
+    window.addEventListener("scroll", animaScroll);
+  }
+}
