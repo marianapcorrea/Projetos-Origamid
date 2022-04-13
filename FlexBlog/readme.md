@@ -7,7 +7,7 @@ Criação de *layout* responsivo usando as propriedades do *FlexBox*, de acordo 
 
 ***
 
- Para visitar o site, **[clique aqui]**. (https://flexblog-mpcs.netlify.app/)
+ Para visitar o site, **[clique aqui](https://flexblog-mpcs.netlify.app/)**.
 
 
 ***
