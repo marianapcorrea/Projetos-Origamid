@@ -15,12 +15,12 @@ Criação de *layout* responsivo usando as propriedades do *FlexBox*, de acordo 
 Prévia: Site visto em monitor 
 
 
-![Prévia: Site visto em monitor ](/img/previa-flexblog1.png)
+![Prévia: Site visto em monitor ](https://github.com/marianapcorrea/Projetos-Origamid/blob/master/FlexBlog/img/previa-flexblog1.png)
 
 Prévia: Site responsivo
 
 
-![Prévia: Site responsivo](/img/previa-flexblog2.png)
+![Prévia: Site responsivo](https://github.com/marianapcorrea/Projetos-Origamid/blob/master/FlexBlog/img/previa-flexblog2.png)
 
 
 
