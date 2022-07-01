@@ -1,7 +1,7 @@
 //Deixa invisível os arquivos:
  {
   "git.enabled": false,
-  "files.exclude": {
+  "files.exclude": {  
     "node_modules": true,
     ".vscode": true,
     ".gitignore": true,
